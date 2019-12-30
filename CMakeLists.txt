@@ -25,7 +25,7 @@ function(add_glew_to_libs)
     if (UNIX)
         set(LIBS ${LIBS} GLEW PARENT_SCOPE)
     endif()
-    #todo : Support win32 (MSVC++ and MinGW) and GNU/Linux
+    #todo : Support win32
 endfunction()
 
 function(add_sdl2_to_libs)
