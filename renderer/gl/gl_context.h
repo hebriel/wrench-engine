@@ -23,7 +23,6 @@ namespace wrench {
 		void init() override;
 		void swap_buffers() override;
 
-
 	private:
 		GLSettings		m_settings	{};
 		void*			m_context	{nullptr};
