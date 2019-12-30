@@ -33,6 +33,7 @@ function(add_sdl2_to_libs)
 endfunction()
 
 add_library(wrench core/core.h window/window.cc window/window.h core/types.h core/core.cc gl/gl_settings.h gl/gl.h)
+add_library(wrench-shared SHARED core/core.h window/window.cc window/window.h core/types.h core/core.cc gl/gl_settings.h gl/gl.h)
 add_executable(example main.cpp)
 
 add_opengl_to_libs()
@@ -40,4 +41,5 @@ add_sdl2_to_libs()
 add_glew_to_libs()
 
 target_link_libraries(wrench ${LIBS})
+target_link_libraries(wrench-shared ${LIBS})
 target_link_libraries(example ${LIBS} wrench)
