@@ -7,23 +7,19 @@
 
 #include "../core/core.h"
 #include "../core/types.h"
-#include "../gl/gl_settings.h"
-#include "../gl/gl.h"
+#include "../renderer/common/context.h"
 #include <string>
-#include <SDL2/SDL.h>
+
+class SDL_Window;
 
 namespace wrench {
 
 	/**
- 	* @brief Window used for drawing. Contains an OpenGL context
+ 	* @brief Window used for drawing
  	*/
 	class Window
 	{
 	public:
-		/**
-		* @brief Default constructor
-		*/
-		Window() = default;
 
 		/**
 		* @brief Default destructor
@@ -33,7 +29,7 @@ namespace wrench {
 		/**
 		* @brief Creates the window from a size and a title
 		*/
-		Window(Size size, const std::string& title, GLSettings settings = GLSettings());
+		Window(Size size, const std::string& title);
 
 		/**
 		* @brief Get the title of the window
@@ -46,14 +42,9 @@ namespace wrench {
 		[[nodiscard]] Size getSize() const;
 
 		/**
-		* @brief Get the OpenGL context settings
-		*/
-		[[nodiscard]] const GLSettings& getGLSettings() const;
-
-		/**
 		* @brief Get the OpenGL context
 		*/
-		[[nodiscard]] const SDL_GLContext& getGLContext() const;
+		[[nodiscard]] const Context& getContext() const;
 
 		/**
 		* @brief Tell whether or not the window is open
@@ -80,12 +71,20 @@ namespace wrench {
 		*/
 		void display() const;
 
+		/**
+		* @brief Creates a context. ContextType has to derive from wrench::Context
+		*/
+		template <class ContextType, class... Args>
+		void initContext(Args... args)
+		{
+			m_context = new ContextType(m_window, args...);
+		}
+
 	private:
 		std::string		m_title		{"invalid window"};
 		Size			m_size		{300, 200};
 		SDL_Window*		m_window	{nullptr};
-		SDL_GLContext	m_context	{nullptr};
-		GLSettings		m_settings	{};
+		Context*		m_context	{nullptr};
 		bool			m_isOpen	{false};
 
 	};

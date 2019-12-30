@@ -3,14 +3,14 @@
 // License : LGPLv3
 //
 
-#include <GL/glew.h>
-#include <stdexcept>
 #include "window.h"
+#include <SDL2/SDL.h>
+#include <stdexcept>
 
 namespace wrench {
 
-	Window::Window(Size size, const std::string& title, GLSettings settings)
-		: m_size(size), m_title(title), m_settings(settings)
+	Window::Window(Size size, const std::string& title)
+		: m_size(size), m_title(title)
 	{
 		m_window = SDL_CreateWindow(
 				title.c_str(),
@@ -22,31 +22,11 @@ namespace wrench {
 
 		SDL_ShowWindow(m_window);
 		m_isOpen = true;
-
-		if (settings.useCore)
-		{
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-		}
-
-		if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, settings.majorVersion) < 0)
-			throw std::runtime_error(SDL_GetError());
-		if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, settings.minorVersion) < 0)
-			throw std::runtime_error(SDL_GetError());
-		if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, settings.useDoubleBuffering) < 0)
-			throw std::runtime_error(SDL_GetError());
-
-		m_context = SDL_GL_CreateContext(m_window);
-		if (m_context == nullptr)
-			throw std::runtime_error(SDL_GetError());
-
-		glewExperimental = GL_TRUE;
-		int err = glewInit();
-		if (err != GLEW_OK)
-			throw std::runtime_error((char*)glewGetErrorString(err));
 	}
 
 	Window::~Window()
 	{
+		delete m_context;
 		SDL_DestroyWindow(m_window);
 	}
 
@@ -72,7 +52,7 @@ namespace wrench {
 
 	void Window::display() const
 	{
-		SDL_GL_SwapWindow(m_window);
+		m_context->swap_buffers();
 	}
 
 	void Window::update()
@@ -98,13 +78,8 @@ namespace wrench {
 		return m_isOpen;
 	}
 
-	const GLSettings& Window::getGLSettings() const
+	const Context& Window::getContext() const
 	{
-		return m_settings;
-	}
-
-	const SDL_GLContext& Window::getGLContext() const
-	{
-		return m_context;
+		return *m_context;
 	}
 }
