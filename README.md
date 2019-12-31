@@ -10,4 +10,4 @@ Build status : [![CircleCI](https://circleci.com/gh/hebriel/wrench-engine/tree/m
 | Windows - MSVC    | :x:                | :x:                |
 | Windows - MinGW   | :x:                | :x:                |
 
-The Wrench Engine is a C++17 engine based on modern OpenGL that DOESN'T have for goal to revolutionize the gaming industry. Yeah.
+The Wrench Engine is a C++17 game engine mostly present to test out my new programming skills. I hope it will be usable some day.
