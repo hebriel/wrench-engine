@@ -4,7 +4,7 @@
 //
 
 #include "context.h"
-#include <SDL2/SDL.h>
+#include "../../core/SDL.h"
 
 namespace wrench {
 
