@@ -19,7 +19,7 @@ int main()
 	wrench::Window window({800, 600}, "Default Window");
 	window.initContext<wrench::GLContext>(settings);
 
-	glClearColor(1, 1, 1, 1);
+	glClearColor(1, 0, 1, 1);
 
 	while (window.isOpen())
 	{
