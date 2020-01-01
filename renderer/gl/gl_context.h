@@ -13,7 +13,7 @@ class SDL_Window;
 
 namespace wrench {
 
-	class GLSettings;
+	struct GLSettings;
 
 	class GLContext final : public Context
 	{
