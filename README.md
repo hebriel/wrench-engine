@@ -1,7 +1,5 @@
-
-
-Build status :
-[![CircleCI](https://circleci.com/gh/hebriel/wrench-engine/tree/master.svg?style=svg&circle-token=94eb05888d1b0b7b51621935a01cdae5aaacafea)](https://circleci.com/gh/hebriel/wrench-engine/tree/master)  
+[![CircleCI](https://circleci.com/gh/hebriel/wrench-engine/tree/master.svg?style=svg&circle-token=94eb05888d1b0b7b51621935a01cdae5aaacafea)](https://circleci.com/gh/hebriel/wrench-engine/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d804879fda2d4836adef825b03648e8e)](https://www.codacy.com/manual/hebriel/wrench-engine?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hebriel/wrench-engine&amp;utm_campaign=Badge_Grade)
 
 | OS - Compiler     | Support                 | CI Coverage        |
 |-------------------|-------------------------|--------------------|
