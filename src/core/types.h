@@ -12,7 +12,14 @@ namespace wrench {
  	*/
 	struct Size
 	{
+		/**
+		* @brief Signed width of an object
+		*/
 		int	width;
+
+		/**
+		* @brief Signed height of an object
+		*/
 		int	height;
 	};
 

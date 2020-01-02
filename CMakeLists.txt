@@ -3,6 +3,30 @@ project(wrench CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+#Options
+option(BUILD_DOC "Build the documentation" ON)
+
+#Find Doxygen
+if(BUILD_DOC)
+    find_package(Doxygen)
+    if (DOXYGEN_FOUND)
+        set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile)
+        set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/documentation/Doxyfile)
+
+        #File configuration
+        configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+        message("Doxygen build started")
+
+        add_custom_target(doc ALL
+                COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                COMMENT "Generating documentation using Doxygen"
+                VERBATIM)
+    else (DOXYGEN_FOUND)
+        message("Doxygen need to be installed to generate the documentation")
+    endif (DOXYGEN_FOUND)
+endif()
+
 #Find SDL2
 find_package(SDL2 REQUIRED)
 
@@ -38,9 +62,10 @@ endfunction()
 
 #Add targets and source files
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
-add_library(wrench core/core.h window/window.cc window/window.h core/types.h core/core.cc renderer/gl/gl_settings.h renderer/gl/gl.h renderer/common/context.cc renderer/common/context.h renderer/gl/gl_context.cc renderer/gl/gl_context.h)
-#todo: add_library(wrench-shared SHARED core/core.h window/window.cc window/window.h core/types.h core/core.cc renderer/gl/gl_settings.h renderer/gl/gl.h renderer/common/context.cc renderer/common/context.h renderer/gl/gl_context.cc renderer/gl/gl_context.h core/SDL.h)
-add_executable(example main.cpp)
+#todo: Add a target to build a shared library
+#todo: Make a separated module in ./src for every source file
+add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h)
+add_executable(example src/main.cpp)
 
 #Add include directories
 include_directories(${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
@@ -52,5 +77,4 @@ add_glew_to_libs()
 
 #Link libraries in LIBS
 target_link_libraries(wrench ${LIBS})
-#target_link_libraries(wrench-shared ${LIBS})
 target_link_libraries(example ${LIBS} wrench)

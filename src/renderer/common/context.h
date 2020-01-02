@@ -10,7 +10,7 @@ class SDL_Window;
 namespace wrench {
 
 	/**
-	* @brief Context interface used internally by the Engine
+	* @brief Interface used internally by the Engine to create a context for any Graphics API
 	* @details You probably want to use implementations of this interface such as GLContext
 	*/
 	class Context
@@ -35,6 +35,9 @@ namespace wrench {
 		virtual void init() = 0;
 
 	protected:
+		/**
+		* @brief Pointer to an SDL window structure
+		*/
 		SDL_Window*	p_window	{nullptr};
 	};
 }
