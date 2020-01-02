@@ -38,7 +38,7 @@ endfunction()
 
 #Add targets and source files
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
-add_library(wrench core/core.h window/window.cc window/window.h core/types.h core/core.cc renderer/gl/gl_settings.h renderer/gl/gl.h renderer/common/context.cc renderer/common/context.h renderer/gl/gl_context.cc renderer/gl/gl_context.h core/SDL.h)
+add_library(wrench core/core.h window/window.cc window/window.h core/types.h core/core.cc renderer/gl/gl_settings.h renderer/gl/gl.h renderer/common/context.cc renderer/common/context.h renderer/gl/gl_context.cc renderer/gl/gl_context.h)
 #todo: add_library(wrench-shared SHARED core/core.h window/window.cc window/window.h core/types.h core/core.cc renderer/gl/gl_settings.h renderer/gl/gl.h renderer/common/context.cc renderer/common/context.h renderer/gl/gl_context.cc renderer/gl/gl_context.h core/SDL.h)
 add_executable(example main.cpp)
 

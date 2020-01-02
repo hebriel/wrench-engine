@@ -4,7 +4,7 @@
 //
 
 #include "window.h"
-#include "../core/SDL.h"
+#include <SDL.h>
 #include <stdexcept>
 
 namespace wrench {

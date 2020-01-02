@@ -6,7 +6,7 @@
 #include "gl_context.h"
 #include "gl.h"
 #include <stdexcept>
-#include "../../core/SDL.h"
+#include <SDL.h>
 
 namespace wrench
 {
