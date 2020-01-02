@@ -15,17 +15,32 @@ namespace wrench {
 
 	struct GLSettings;
 
+	/**
+ 	* @brief Context used for OpenGL rendering.
+ 	*/
 	class GLContext final : public Context
 	{
 	public:
+		/**
+		* @brief Default constructor
+		*
+		* @details This constructor is meant to be called by the Window class. See Window::initContext
+		*/
 		explicit GLContext(SDL_Window* windowHandle, const GLSettings& settings);
 
-		void init() override;
+		/**
+		* @brief Swap the rendering buffers
+		*/
 		void swap_buffers() override;
 
 	private:
 		GLSettings		m_settings	{};
 		void*			m_context	{nullptr};
+
+		/**
+		* @brief Initialization method separated from the constructor
+		*/
+		void init() override;
 	};
 }
 

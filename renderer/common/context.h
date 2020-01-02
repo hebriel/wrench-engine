@@ -28,6 +28,10 @@ namespace wrench {
 		virtual void swap_buffers() = 0;
 
 	protected:
+
+		/**
+		* @brief Initialization method separated from the constructor
+		*/
 		virtual void init() = 0;
 
 	protected:
