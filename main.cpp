@@ -13,7 +13,7 @@ int main()
 	wrench::GLSettings settings;
 	settings.useDoubleBuffering = true;
 	settings.useCore = true;
-	settings.minorVersion = 4;
+	settings.majorVersion = 4;
 	settings.minorVersion = 1;
 
 	wrench::Window window({800, 600}, "Default Window");
