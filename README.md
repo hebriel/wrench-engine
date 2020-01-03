@@ -1,3 +1,5 @@
+![Screenshot](https://i.imgur.com/r0pdRBz.png)
+
 ![CircleCI](https://img.shields.io/circleci/build/github/hebriel/wrench-engine/master?logo=CircleCI)
 ![Codacy grade](https://img.shields.io/codacy/grade/d804879fda2d4836adef825b03648e8e?logo=Codacy)
 ![GitHub](https://img.shields.io/github/license/hebriel/wrench-engine?logo=GNU)
