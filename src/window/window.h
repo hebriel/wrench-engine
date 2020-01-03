@@ -28,6 +28,9 @@ namespace wrench {
 
 		/**
 		* @brief Creates the window from a size and a title
+		*
+		* @param size Size of the window
+		* @param title Title of the window
 		*/
 		Window(Size size, const std::string& title);
 
@@ -61,11 +64,15 @@ namespace wrench {
 
 		/**
 		* @brief Set the title of the window
+		*
+		* @param title New title of the window
 		*/
 		void setTitle(const std::string& title);
 
 		/**
 		* @brief Set the size of the window
+		*
+		* @param size New size of the window
 		*/
 		void setSize(const Size& size);
 
@@ -81,6 +88,8 @@ namespace wrench {
 
 		/**
 		* @brief Creates a context. ContextType has to derive from wrench::Context
+		*
+		* @param args Put the elements used for the constructor of the context here
 		*/
 		template <class ContextType, class... Args>
 		void initContext(Args... args)
