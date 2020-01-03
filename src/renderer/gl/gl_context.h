@@ -24,7 +24,10 @@ namespace wrench {
 		/**
 		* @brief Default constructor
 		*
-		* @details This constructor is meant to be called by the Window class. See Window::initContext
+		* This constructor is meant to be called by the Window class. See Window::initContext
+		*
+	 	* @param windowHandle Pointer to an SDL_Window for the context to attach to
+	 	* @param settings Constant reference to a GLSettings for the context to use
 		*/
 		explicit GLContext(SDL_Window* windowHandle, const GLSettings& settings);
 

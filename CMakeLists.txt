@@ -5,6 +5,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 #Options
 option(BUILD_DOC "Build the documentation" ON)
+option(BUILD_EXAMPLE "Build an example executable" ON)
 
 #Find Doxygen
 if(BUILD_DOC)
@@ -20,7 +21,7 @@ if(BUILD_DOC)
         add_custom_target(doc ALL
                 COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                COMMENT "Generating documentation using Doxygen"
+                COMMENT "Generating Doxygen documentation"
                 VERBATIM)
     else (DOXYGEN_FOUND)
         message("Doxygen need to be installed to generate the documentation")
@@ -64,8 +65,17 @@ endfunction()
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
 #todo: Add a target to build a shared library
 #todo: Make a separated module in ./src for every source file
-add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h)
-add_executable(example src/main.cpp)
+add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h)
+
+if(BUILD_EXAMPLE)
+    add_executable(example src/example/main.cpp)
+
+    add_custom_command(
+            TARGET example POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/src/example/resources
+            ${CMAKE_CURRENT_BINARY_DIR}/resources)
+endif()
 
 #Add include directories
 include_directories(${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
@@ -77,4 +87,7 @@ add_glew_to_libs()
 
 #Link libraries in LIBS
 target_link_libraries(wrench ${LIBS})
-target_link_libraries(example ${LIBS} wrench)
+
+if(BUILD_EXAMPLE)
+    target_link_libraries(example ${LIBS} wrench)
+endif()

@@ -18,6 +18,8 @@ namespace wrench {
 	public:
 		/**
 		* @brief Main constructor
+		*
+		* @param windowHandle Pointer to an SDL_Window for the context to attach to
 		*/
 		explicit Context(SDL_Window* windowHandle);
 		virtual ~Context() = default;
