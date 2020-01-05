@@ -9,12 +9,12 @@
 
 namespace wrench {
 
-	void Shader::bind()
+	void Shader::bind() const
 	{
 
 	}
 
-	void Shader::unbind()
+	void Shader::unbind() const
 	{
 
 	}

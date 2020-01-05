@@ -7,8 +7,7 @@
 #include "gl_shader.h"
 #include "gl.h"
 
-namespace wrench
-{
+namespace wrench::gl {
 	GLShader::GLShader()
 	{
 		m_GLProgram = glCreateProgram();
@@ -19,12 +18,12 @@ namespace wrench
 		glDeleteProgram(m_GLProgram);
 	}
 
-	void GLShader::bind()
+	void GLShader::bind() const
 	{
 		glUseProgram(m_GLProgram);
 	}
 
-	void GLShader::unbind()
+	void GLShader::unbind() const
 	{
 		glUseProgram(0);
 	}

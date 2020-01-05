@@ -11,7 +11,7 @@
 
 class SDL_Window;
 
-namespace wrench {
+namespace wrench::gl {
 
 	struct GLSettings;
 

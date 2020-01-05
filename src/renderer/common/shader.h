@@ -31,12 +31,12 @@ namespace wrench {
 		/**
 		* @brief Bind the shader program
 		*/
-		virtual void bind();
+		virtual void bind() const;
 
 		/**
 		* @brief Unbind any shader program
 		*/
-		virtual void unbind();
+		virtual void unbind() const;
 
 		/**
 		* @brief Link the shader program

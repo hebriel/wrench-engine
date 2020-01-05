@@ -65,7 +65,7 @@ endfunction()
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
 #todo: Add a target to build a shared library
 #todo: Make a separated module in ./src for every source file
-add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h)
+add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h src/renderer/common/vertex_buffer.h src/renderer/common/index_buffer.h src/renderer/gl/gl_vertex_buffer.cc src/renderer/gl/gl_vertex_buffer.h src/renderer/gl/gl_index_buffer.cc src/renderer/gl/gl_index_buffer.h src/renderer/common/vertex_array.cc src/renderer/common/vertex_array.h src/renderer/gl/gl_vertex_array.cc src/renderer/gl/gl_vertex_array.h src/renderer/common/layout.cc src/renderer/common/layout.h src/renderer/gl/all.h)
 
 if(BUILD_EXAMPLE)
     add_executable(example src/example/main.cpp)
@@ -90,4 +90,5 @@ target_link_libraries(wrench ${LIBS})
 
 if(BUILD_EXAMPLE)
     target_link_libraries(example ${LIBS} wrench)
+    target_include_directories(example PUBLIC src)
 endif()
