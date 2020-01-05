@@ -18,4 +18,17 @@
 
 :ballot_box_with_check: : Experimental
 
-The Wrench Engine is a C++17 game engine mostly present to test out my new programming skills. I hope it will be usable some day.
+The Wrench Engine is a game engine made with C++17 mostly present to test out my new programming skills. I hope it will be usable some day.
+
+Wrench is currently only developed by me on macOS and GNU/Linux and only supports OpenGL. It is inspired by :
+
+- [Hazel](https://github.com/TheCherno/Hazel)
+- My old and rusty [achgabat](https://github.com/hebriel/achgabat) project (more of an ancestor of some sort)
+- Part of the [SFML](https://github.com/SFML/SFML) API (it is **NOT** a dependency!)
+
+Dependencies currently are :
+- OpenGL
+- [GLM](https://glm.g-truc.net/0.9.9/index.html)
+- [SDL2](https://www.libsdl.org/download-2.0.php)
+- [GLEW](http://glew.sourceforge.net/) ([GLAD](https://glad.dav1d.de/) will be an alternative in the future)
+- A compiler that supports the C++17 features

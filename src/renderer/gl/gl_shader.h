@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include "../common/shader.h"
 
-namespace wrench {
+namespace wrench::gl {
 
 	/**
 	* @brief Implementation of a Shader for the OpenGL Shading Language (GLSL)
@@ -20,9 +20,9 @@ namespace wrench {
 
 		~GLShader() override ;
 
-		void bind() override;
+		void bind() const override;
 
-		void unbind() override;
+		void unbind() const override;
 
 		void link() override;
 

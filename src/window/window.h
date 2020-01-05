@@ -91,10 +91,11 @@ namespace wrench {
 		*
 		* @param args Put the elements used for the constructor of the context here
 		*/
-		template <class ContextType, class... Args>
+		template <class ContextImpl, class... Args>
 		void initContext(Args... args)
 		{
-			m_context = new ContextType(m_window, args...);
+			static_assert(std::is_base_of_v<Context, ContextImpl>, "Template type parameter should inherit wrench::VertexBuffer");
+			m_context = new ContextImpl(m_window, args...);
 		}
 
 	private:

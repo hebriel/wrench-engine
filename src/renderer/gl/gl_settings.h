@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace wrench {
+namespace wrench::gl {
 
 	/**
  	* @brief Structure used to configure an OpenGL context

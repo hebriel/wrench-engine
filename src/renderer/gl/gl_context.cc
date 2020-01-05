@@ -8,8 +8,8 @@
 #include <stdexcept>
 #include <SDL.h>
 
-namespace wrench
-{
+namespace wrench::gl {
+
 	GLContext::GLContext(SDL_Window* windowHandle, const GLSettings& settings)
 		: Context(windowHandle), m_settings(settings)
 	{
