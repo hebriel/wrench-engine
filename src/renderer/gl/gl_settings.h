@@ -31,5 +31,10 @@ namespace wrench::gl {
 		* @brief Tell whether or not OpenGL should enable Double Buffering
 		*/
 		bool 		useDoubleBuffering	{true};
+
+		/**
+		* @brief Enable Vertical Synchronisation
+		*/
+		bool 		vsync 				{false};
 	};
 }

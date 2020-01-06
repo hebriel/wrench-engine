@@ -8,7 +8,9 @@
 #include "../core/core.h"
 #include "../core/types.h"
 #include "../renderer/common/context.h"
+#include "../core/time/clocktime.h"
 #include <string>
+#include <thread>
 
 class SDL_Window;
 
@@ -42,6 +44,11 @@ namespace wrench {
 		[[nodiscard]] const std::string& get_title() const;
 
 		/**
+		* @brief Set the maximum frames that can be rendered in one second
+		*/
+		void set_framerate_limit(unsigned limit);
+
+		/**
 		* @brief Get the size of the window
 		*
 		* @return The size of the window on the screen
@@ -63,6 +70,13 @@ namespace wrench {
 		[[nodiscard]] bool is_open() const;
 
 		/**
+		* @brief Tell the time between this frame and the frame before
+		*
+		* @return The time between this frame and the frame before
+		*/
+		[[nodiscard]] Time get_delta_time() const;
+
+		/**
 		* @brief Set the title of the window
 		*
 		* @param title New title of the window
@@ -79,12 +93,12 @@ namespace wrench {
 		/**
 		* @brief Needs to be called at every frame
 		*/
-		void update();
+		bool update();
 
 		/**
 		* @brief Displays the window and swap the buffers
 		*/
-		void display() const;
+		void display();
 
 		/**
 		* @brief Creates a context. ContextType has to derive from wrench::Context
@@ -104,6 +118,8 @@ namespace wrench {
 		SDL_Window*		m_window	{nullptr};
 		Context*		m_context	{nullptr};
 		bool			m_isOpen	{false};
-
+		Time			m_dt		{};
+		Clock			m_dc		{};
+		Time			m_timeCap	{wrench::Time::microseconds(16667)};
 	};
 }

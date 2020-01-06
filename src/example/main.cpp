@@ -5,6 +5,10 @@
 
 #include <window/window.h>
 #include <renderer/gl/all.h>
+#include <renderer/common/renderer.h>
+#include <renderer/gl/gl_renderer.h>
+#include <renderer/common/camera.h>
+#include <renderer/common/render_states.h>
 
 int main()
 {
@@ -18,10 +22,13 @@ int main()
 	settings.majorVersion = 4; //OpenGL 4.1
 	settings.minorVersion = 1;
 
-	//Create the window
+	//Create the window and attach an OpenGL context to it
 	wrench::Window window({800, 600}, "Wrench : Example");
-	//Attach it an OpenGL context
 	window.initContext<wrench::gl::GLContext>(settings);
+
+	window.set_framerate_limit(10000);
+
+	auto renderer = wrench::Renderer::create<wrench::gl::GLRenderer>(window);
 
 	//Create a shader
 	wrench::gl::GLShader shader;
@@ -35,14 +42,16 @@ int main()
 	//Here are our vertices for our Vertex Buffer Object
 	float vertices[] = {
 		//Position				//Color
-		-0.5f, -0.5f, 0.0f, 	1, 0, 0, 1,
-		 0.5f, -0.5f, 0.0f, 	0, 1, 0, 1,
-		 0.0f,  0.5f, 0.0f, 	0, 0, 1, 1,
+		-1.0f, -1.0f, 0.0f, 	1, 0, 0, 1,
+		 1.0f, -1.0f, 0.0f, 	0, 1, 0, 1,
+		 1.0f,  1.0f, 0.0f, 	0, 0, 1, 1,
+		-1.0f, 1.0f, 0.0f, 		1, 0, 1, 1,
 	};
 
 	//Here are our indices for our Vertex Buffer Object
-	unsigned indices[3] = {
+	unsigned indices[6] = {
 			0, 1, 2,
+			2, 3, 0
 	};
 
 	//Create the layout, made of a Vec3 (position) and a Vec4 (color)
@@ -66,27 +75,43 @@ int main()
 	VAO->set_index_buffer(EBO);
 
 	//Set the nice orange background color
-	glClearColor(0.95, 0.48, 0.14, 1);
+	renderer->change_clear_color(glm::vec4(0.95, 0.48, 0.14, 1));
+
+	wrench::Camera camera(renderer);
+
+	camera.set_position({0, 0, 4});
+	camera.set_rotation({0, 0, 0});
+	camera.generate_perspective(glm::radians(90.f), 0.01f, 1000.f);
+	//alternative : camera.generate_ortho(-2.f, 2.f, -2.f,2.f,0.01f, 1000.f);
+
+	wrench::Transform transform;
+
+	wrench::RenderStates states;
+
+	states.shader = &shader;
+	states.camera = &camera;
+	states.transform = &transform;
 
 	while (window.is_open())
 	{
-		//Updating events and stuff
-		window.update();
+		//Update events and stuff
+		if (window.update())
+		{
+			//Clear the screen
+			renderer->clear();
 
-		//Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT);
+			transform.rotation.y += glm::radians(window.get_delta_time().as_milliseconds() / 15.f);
+			transform.rotation.x += glm::radians(window.get_delta_time().as_milliseconds() / 50.f);
 
-		//Bind the Vertex Array
-		VAO->bind();
+			//Bind the shader
+			shader.bind();
 
-		//Bind the shader
-		shader.bind();
+			//Draw the VAO
+			renderer->draw_object(VAO, states);
 
-		//Draw the bound Vertex Array, with the VBO and the EBO connected to it
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
-
-		//Swap the buffers
-		window.display();
+			//Swap the buffers
+			window.display();
+		}
 	}
 
 	//Quit the engine

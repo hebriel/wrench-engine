@@ -13,7 +13,7 @@
 
 #define WRENCH_VERSION_MAJOR	0
 #define WRENCH_VERSION_MINOR	1
-#define WRENCH_VERSION_PATCH	0
+#define WRENCH_VERSION_PATCH	1
 
 namespace wrench {
 

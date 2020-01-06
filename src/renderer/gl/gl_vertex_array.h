@@ -27,6 +27,8 @@ namespace wrench::gl {
 
 		void set_index_buffer(const std::shared_ptr<IndexBuffer>& indexBuffer) override;
 
+		[[nodiscard]] const std::shared_ptr<IndexBuffer> &get_index_buffer() const override;
+
 	private:
 		uint32_t m_GLVertexArray {};
 		std::vector<std::shared_ptr<VertexBuffer>> m_vertexBuffers;
