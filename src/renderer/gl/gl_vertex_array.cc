@@ -56,4 +56,9 @@ namespace wrench::gl {
 
 		m_indexBuffer = indexBuffer;
 	}
+
+	const std::shared_ptr<IndexBuffer> &GLVertexArray::get_index_buffer() const
+	{
+		return m_indexBuffer;
+	}
 }
