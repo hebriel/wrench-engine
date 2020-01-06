@@ -68,7 +68,7 @@ int main()
 	//Set the nice orange background color
 	glClearColor(0.95, 0.48, 0.14, 1);
 
-	while (window.isOpen())
+	while (window.is_open())
 	{
 		//Updating events and stuff
 		window.update();

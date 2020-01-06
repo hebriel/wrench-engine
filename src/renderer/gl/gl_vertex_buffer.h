@@ -28,7 +28,7 @@ namespace wrench::gl {
 
 		void setLayout(const Layout &layout) override;
 
-		[[nodiscard]] const Layout& getLayout() const override;
+		[[nodiscard]] const Layout& get_layout() const override;
 
 	private:
 		uint32_t	m_GLVertexBuffer	{};

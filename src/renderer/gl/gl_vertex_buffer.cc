@@ -35,7 +35,7 @@ namespace wrench::gl {
 		m_layout = layout;
 	}
 
-	const Layout& GLVertexBuffer::getLayout() const
+	const Layout& GLVertexBuffer::get_layout() const
 	{
 		return m_layout;
 	}

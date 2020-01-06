@@ -39,42 +39,42 @@ namespace wrench {
 		*
 		* @return Constant reference to the title displayed at the top of the window
 		*/
-		[[nodiscard]] const std::string& getTitle() const;
+		[[nodiscard]] const std::string& get_title() const;
 
 		/**
 		* @brief Get the size of the window
 		*
 		* @return The size of the window on the screen
 		*/
-		[[nodiscard]] Size getSize() const;
+		[[nodiscard]] Size get_size() const;
 
 		/**
 		* @brief Get the OpenGL context
 		*
 		* @return Constant reference to the abstract Context class
 		*/
-		[[nodiscard]] const Context& getContext() const;
+		[[nodiscard]] const Context& get_context() const;
 
 		/**
 		* @brief Tell whether or not the window is open
 		*
 		* @return True if the window is open, false if it's not
 		*/
-		[[nodiscard]] bool isOpen() const;
+		[[nodiscard]] bool is_open() const;
 
 		/**
 		* @brief Set the title of the window
 		*
 		* @param title New title of the window
 		*/
-		void setTitle(const std::string& title);
+		void set_title(const std::string& title);
 
 		/**
 		* @brief Set the size of the window
 		*
 		* @param size New size of the window
 		*/
-		void setSize(const Size& size);
+		void set_size(const Size& size);
 
 		/**
 		* @brief Needs to be called at every frame

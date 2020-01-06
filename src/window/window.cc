@@ -30,22 +30,22 @@ namespace wrench {
 		SDL_DestroyWindow(m_window);
 	}
 
-	const std::string& Window::getTitle() const
+	const std::string& Window::get_title() const
 	{
 		return m_title;
 	}
 
-	Size Window::getSize() const
+	Size Window::get_size() const
 	{
 		return m_size;
 	}
 
-	void Window::setTitle(const std::string& title)
+	void Window::set_title(const std::string& title)
 	{
 		m_title = title;
 	}
 
-	void Window::setSize(const Size& size)
+	void Window::set_size(const Size& size)
 	{
 		m_size = size;
 	}
@@ -73,12 +73,12 @@ namespace wrench {
 		}
 	}
 
-	bool Window::isOpen() const
+	bool Window::is_open() const
 	{
 		return m_isOpen;
 	}
 
-	const Context& Window::getContext() const
+	const Context& Window::get_context() const
 	{
 		return *m_context;
 	}

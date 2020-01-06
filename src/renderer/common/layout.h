@@ -154,7 +154,7 @@ namespace wrench {
 		*
 		* @return 32 bits unsigned int representing the dimension of the data type
 		*/
-		[[nodiscard]] inline uint32_t getDimension() const
+		[[nodiscard]] inline uint32_t get_dimension() const
 		{
 			return data_type_dimension(type);
 		}
@@ -164,7 +164,7 @@ namespace wrench {
 		*
 		* @return 32 bits unsigned int (synonym to GLenum) representing the OpenGL representation of the data type (GL_FLOAT..)
 		*/
-		[[nodiscard]] inline uint32_t getGLType() const
+		[[nodiscard]] inline uint32_t get_gl_type() const
 		{
 			return data_type_gl_type(type);
 		}
@@ -192,14 +192,14 @@ namespace wrench {
 		*
 		* @return Const reference to an std::list of LayoutElement
 		*/
-		[[nodiscard]] inline const std::list<LayoutElement>& getElements() const {return m_elements;}
+		[[nodiscard]] inline const std::list<LayoutElement>& get_elements() const {return m_elements;}
 
 		/**
 		* @brief Get the size of one Vertex in a VBO in bytes (also called the stride)
 		*
 		* @return 32 bit unsigned integer representing the stride of the layout
 		*/
-		[[nodiscard]] inline uint32_t getStride() const {return m_stride;}
+		[[nodiscard]] inline uint32_t get_stride() const {return m_stride;}
 
 	private:
 		std::list<LayoutElement> m_elements;
