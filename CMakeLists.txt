@@ -34,9 +34,6 @@ find_package(SDL2 REQUIRED)
 #Find OpenGL
 find_package(OpenGL REQUIRED)
 
-#Find GLM
-find_package(glm REQUIRED)
-
 #Find GLEW
 find_package(GLEW REQUIRED)
 
@@ -78,7 +75,7 @@ if(BUILD_EXAMPLE)
 endif()
 
 #Add include directories
-include_directories(${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
+include_directories(dependencies/glm ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
 
 #Add libraries to LIBS
 add_opengl_to_libs()
