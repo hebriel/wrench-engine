@@ -30,6 +30,18 @@ namespace wrench::gl {
 		if (SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, m_settings.useDoubleBuffering) < 0)
 			throw std::runtime_error(SDL_GetError());
 
+		SDL_GL_SetSwapInterval(int(m_settings.vsync));
+
+		#ifdef __APPLE__
+		if (!m_settings.vsync)
+		{
+			GLint                       sync = 0;
+			CGLContextObj               ctx = CGLGetCurrentContext();
+
+			CGLSetParameter(ctx, kCGLCPSwapInterval, &sync);
+		}
+		#endif
+
 		m_context = SDL_GL_CreateContext(p_window);
 		if (m_context == nullptr)
 			throw std::runtime_error(SDL_GetError());

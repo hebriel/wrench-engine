@@ -40,7 +40,7 @@ namespace wrench {
 		*
 		* @return Constant reference to the Layout of the buffer
 		*/
-		[[nodiscard]] virtual const Layout& getLayout() const = 0;
+		[[nodiscard]] virtual const Layout& get_layout() const = 0;
 
 		/**
 		* @brief Create a shared pointer to an VertexBuffer implementation (VertexBufferImpl)

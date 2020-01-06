@@ -34,9 +34,6 @@ find_package(SDL2 REQUIRED)
 #Find OpenGL
 find_package(OpenGL REQUIRED)
 
-#Find GLM
-find_package(glm REQUIRED)
-
 #Find GLEW
 find_package(GLEW REQUIRED)
 
@@ -65,7 +62,7 @@ endfunction()
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
 #todo: Add a target to build a shared library
 #todo: Make a separated module in ./src for every source file
-add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h src/renderer/common/vertex_buffer.h src/renderer/common/index_buffer.h src/renderer/gl/gl_vertex_buffer.cc src/renderer/gl/gl_vertex_buffer.h src/renderer/gl/gl_index_buffer.cc src/renderer/gl/gl_index_buffer.h src/renderer/common/vertex_array.cc src/renderer/common/vertex_array.h src/renderer/gl/gl_vertex_array.cc src/renderer/gl/gl_vertex_array.h src/renderer/common/layout.cc src/renderer/common/layout.h src/renderer/gl/all.h)
+add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h src/renderer/common/vertex_buffer.h src/renderer/common/index_buffer.h src/renderer/gl/gl_vertex_buffer.cc src/renderer/gl/gl_vertex_buffer.h src/renderer/gl/gl_index_buffer.cc src/renderer/gl/gl_index_buffer.h src/renderer/common/vertex_array.h src/renderer/gl/gl_vertex_array.cc src/renderer/gl/gl_vertex_array.h src/renderer/common/layout.cc src/renderer/common/layout.h src/renderer/gl/all.h src/renderer/common/renderer.h src/renderer/gl/gl_renderer.cc src/renderer/gl/gl_renderer.h src/renderer/common/camera.cc src/renderer/common/camera.h src/renderer/common/render_states.cc src/renderer/common/render_states.h src/renderer/common/transform.cc src/renderer/common/transform.h src/core/time/clocktime.cc src/core/time/clocktime.h)
 
 if(BUILD_EXAMPLE)
     add_executable(example src/example/main.cpp)
@@ -78,7 +75,7 @@ if(BUILD_EXAMPLE)
 endif()
 
 #Add include directories
-include_directories(${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
+include_directories(dependencies/glm ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
 
 #Add libraries to LIBS
 add_opengl_to_libs()

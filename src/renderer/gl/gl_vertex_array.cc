@@ -34,15 +34,15 @@ namespace wrench::gl {
 		vertexBuffer->bind();
 
 		uint32_t index {0};
-		const auto& layout = vertexBuffer->getLayout();
-		for (auto& element : layout.getElements())
+		const auto& layout = vertexBuffer->get_layout();
+		for (auto& element : layout.get_elements())
 		{
 			glEnableVertexAttribArray(index);
 			glVertexAttribPointer(index,
-								  element.getDimension(),
-								  element.getGLType(),
+								  element.get_dimension(),
+								  element.get_gl_type(),
 								  GL_FALSE, //todo: make that an option
-								  layout.getStride(),
+								  layout.get_stride(),
 								  element.offset);
 			++index;
 		}
@@ -55,5 +55,10 @@ namespace wrench::gl {
 		indexBuffer->bind();
 
 		m_indexBuffer = indexBuffer;
+	}
+
+	const std::shared_ptr<IndexBuffer> &GLVertexArray::get_index_buffer() const
+	{
+		return m_indexBuffer;
 	}
 }

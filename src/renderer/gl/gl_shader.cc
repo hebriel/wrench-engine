@@ -4,6 +4,8 @@
 //
 
 #include <vector>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include "gl_shader.h"
 #include "gl.h"
 
@@ -110,4 +112,60 @@ namespace wrench::gl {
 
 		m_shaderMap.clear();
 	}
+
+	void GLShader::set_uniform(const char* name, float value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform1f(location, value);
+	}
+
+	void GLShader::set_uniform(const char *name, glm::vec2 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform2fv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, glm::vec3 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform3fv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, glm::vec4 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform4fv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, int value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform1i(location, value);
+	}
+
+	void GLShader::set_uniform(const char *name, glm::ivec2 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform2iv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, glm::ivec3 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform3iv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, glm::ivec4 value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniform4iv(location, 1, glm::value_ptr(value));
+	}
+
+	void GLShader::set_uniform(const char *name, const glm::mat4& value)
+	{
+		auto location = glGetUniformLocation(m_GLProgram, name);
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+	}
+
+	//todo: unsigned int, mat2 and mat3 uniforms (+ const references instead of copy)
 }

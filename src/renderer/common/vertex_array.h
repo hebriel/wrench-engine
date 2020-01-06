@@ -39,6 +39,11 @@ namespace wrench {
 		virtual void set_index_buffer(const std::shared_ptr<IndexBuffer>& indexBuffer) = 0;
 
 		/**
+		* @brief Add an IndexBuffer
+		*/
+		[[nodiscard]] virtual const std::shared_ptr<IndexBuffer>& get_index_buffer() const = 0;
+
+		/**
 		* @brief Create a shared pointer to a VertexArray implementation (VertexArrayImpl)
 		*
 		* @return Shared pointer to a fresh implementation of a VertexArray

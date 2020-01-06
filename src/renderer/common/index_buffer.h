@@ -30,6 +30,11 @@ namespace wrench {
 		virtual void unbind() const = 0;
 
 		/**
+		* @brief Get the number of vertices of the buffer
+		*/
+		[[nodiscard]] virtual uint32_t get_count() const = 0;
+
+		/**
 		* @brief Create a shared pointer to an IndexBuffer implementation (IndexBufferImpl)
 		*
 		* @return Shared pointer to a fresh implementation of an IndexBuffer
