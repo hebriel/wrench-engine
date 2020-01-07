@@ -22,16 +22,43 @@ namespace wrench {
 	{
 	public:
 
+		/**
+		* @brief Default constructor. Binds to a window with a context
+		*/
 		explicit Renderer(const Window& window)
 			: p_window(window) {}
 
+		/**
+		* @brief Change the clear color using numbers from 0 to 1
+		*/
 		virtual void change_clear_color(const glm::vec4& color) = 0;
+
+		/**
+		* @brief Change the clear color using numbers from 0 to 255
+		*/
 		virtual void change_clear_color(const glm::ivec4& color) = 0;
+
+		/**
+		* @brief Clear the screen. See change_clear_color()
+		*/
 		virtual void clear() = 0;
+
+		/**
+		* @brief Draw a vertex array. A Shader needs to be bound
+		*/
 		virtual void draw_object(const std::weak_ptr<VertexArray>& vertexArray) const = 0;
+
+		/**
+		* @brief Draw a vertex array using the given render states
+		*/
 		virtual void draw_object(const std::weak_ptr<VertexArray>& vertexArray, const RenderStates& states) const = 0;
 
-		const Window& get_window() const {return p_window;}
+		/**
+		* @brief Gets the window the renderer is bound to
+		*
+		* @return Constant reference to the window the renderer is bound to
+		*/
+		[[nodiscard]] const Window& get_window() const {return p_window;}
 
 		/**
 		* @brief Create a shared pointer to a Renderer implementation (RendererImpl)
@@ -46,6 +73,10 @@ namespace wrench {
 		}
 
 	protected:
+
+		/**
+		* @brief Reference to the window the renderer is bound to
+		*/
 		const Window& p_window;
 	};
 }

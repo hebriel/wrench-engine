@@ -20,19 +20,19 @@ namespace wrench::gl {
 
 		void set_uniform(const char *name, float value) override;
 
-		void set_uniform(const char *name, glm::vec2 value) override;
+		void set_uniform(const char *name, const glm::vec2& value) override;
 
-		void set_uniform(const char *name, glm::vec3 value) override;
+		void set_uniform(const char *name, const glm::vec3& value) override;
 
-		void set_uniform(const char *name, glm::vec4 value) override;
+		void set_uniform(const char *name, const glm::vec4& value) override;
 
 		void set_uniform(const char *name, int value) override;
 
-		void set_uniform(const char *name, glm::ivec2 value) override;
+		void set_uniform(const char *name, const glm::ivec2& value) override;
 
-		void set_uniform(const char *name, glm::ivec3 value) override;
+		void set_uniform(const char *name, const glm::ivec3& value) override;
 
-		void set_uniform(const char *name, glm::ivec4 value) override;
+		void set_uniform(const char *name, const glm::ivec4& value) override;
 
 		void set_uniform(const char *name, const glm::mat4& value) override;
 

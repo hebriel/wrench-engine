@@ -80,14 +80,49 @@ namespace wrench {
 		*/
 		virtual Shader& add_fragment_shader_by_file(const std::string& path);
 
+		/**
+		* @brief Set a float uniform value
+		*/
 		virtual void set_uniform(const char* name, float value) = 0;
-		virtual void set_uniform(const char* name, glm::vec2 value) = 0;
-		virtual void set_uniform(const char* name, glm::vec3 value) = 0;
-		virtual void set_uniform(const char* name, glm::vec4 value) = 0;
+
+		/**
+		* @brief Set a vec2 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::vec2& value) = 0;
+
+		/**
+		* @brief Set a vec3 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::vec3& value) = 0;
+
+		/**
+		* @brief Set a vec4 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::vec4& value) = 0;
+
+		/**
+		* @brief Set an int uniform value
+		*/
 		virtual void set_uniform(const char* name, int value) = 0;
-		virtual void set_uniform(const char* name, glm::ivec2 value) = 0;
-		virtual void set_uniform(const char* name, glm::ivec3 value) = 0;
-		virtual void set_uniform(const char* name, glm::ivec4 value) = 0;
+
+		/**
+		* @brief Set a int vec2 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::ivec2& value) = 0;
+
+		/**
+		* @brief Set an int vec3 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::ivec3& value) = 0;
+
+		/**
+		* @brief Set an int vec4 uniform value
+		*/
+		virtual void set_uniform(const char* name, const glm::ivec4& value) = 0;
+
+		/**
+		* @brief Set a 4x4 matrix uniform value
+		*/
 		virtual void set_uniform(const char* name, const glm::mat4& value) = 0;
 
 	protected:

@@ -13,6 +13,9 @@
 
 namespace wrench {
 
+	/**
+	* @brief Group consisting of a VertexBuffer and an IndexBuffer. Used for rendering
+	*/
 	class VertexArray
 	{
 	public:

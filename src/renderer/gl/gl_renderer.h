@@ -10,6 +10,9 @@
 
 namespace wrench::gl {
 
+	/**
+	* @brief OpenGL implementation of a Renderer
+	*/
 	class GLRenderer final : public Renderer
 	{
 	public:

@@ -92,6 +92,8 @@ namespace wrench {
 
 		/**
 		* @brief Needs to be called at every frame
+		*
+		* @return Whether or not the window updated its values (related to get_delta_time())
 		*/
 		bool update();
 

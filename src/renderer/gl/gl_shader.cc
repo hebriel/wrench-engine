@@ -119,19 +119,19 @@ namespace wrench::gl {
 		glUniform1f(location, value);
 	}
 
-	void GLShader::set_uniform(const char *name, glm::vec2 value)
+	void GLShader::set_uniform(const char *name, const glm::vec2& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform2fv(location, 1, glm::value_ptr(value));
 	}
 
-	void GLShader::set_uniform(const char *name, glm::vec3 value)
+	void GLShader::set_uniform(const char *name, const glm::vec3& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform3fv(location, 1, glm::value_ptr(value));
 	}
 
-	void GLShader::set_uniform(const char *name, glm::vec4 value)
+	void GLShader::set_uniform(const char *name, const glm::vec4& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform4fv(location, 1, glm::value_ptr(value));
@@ -143,19 +143,19 @@ namespace wrench::gl {
 		glUniform1i(location, value);
 	}
 
-	void GLShader::set_uniform(const char *name, glm::ivec2 value)
+	void GLShader::set_uniform(const char *name, const glm::ivec2& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform2iv(location, 1, glm::value_ptr(value));
 	}
 
-	void GLShader::set_uniform(const char *name, glm::ivec3 value)
+	void GLShader::set_uniform(const char *name, const glm::ivec3& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform3iv(location, 1, glm::value_ptr(value));
 	}
 
-	void GLShader::set_uniform(const char *name, glm::ivec4 value)
+	void GLShader::set_uniform(const char *name, const glm::ivec4& value)
 	{
 		auto location = glGetUniformLocation(m_GLProgram, name);
 		glUniform4iv(location, 1, glm::value_ptr(value));
