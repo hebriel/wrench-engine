@@ -16,6 +16,9 @@ jobs:
           name: Installing GLEW
           command: 'apt-get update && apt-get install -y libglew-dev'
       - run:
+          name: Installing ASSIMP
+          command: 'apt-get update && apt-get install -y libassimp-dev'
+      - run:
           name: Install CMAKE
           command: 'apt-get update && sudo apt-get install -y cmake'
       - run:
@@ -44,6 +47,9 @@ jobs:
       - run:
           name: Installing GLEW
           command: 'apt-get update && apt-get install -y libglew-dev'
+      - run:
+          name: Installing ASSIMP
+          command: 'apt-get update && apt-get install -y libassimp-dev'
       - run:
           name: Install CMAKE
           command: 'apt-get update && sudo apt-get install -y cmake'
