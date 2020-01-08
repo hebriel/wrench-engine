@@ -1,0 +1,7 @@
+material:
+  - name: "Flat Color Material"
+  - shader:
+    - vertex: "shader.vert"
+    - fragment: "shader.frag"
+  - uniforms:
+      "u_Color": vec4

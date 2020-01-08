@@ -22,6 +22,8 @@ namespace wrench::gl {
 
 		void draw_object(const std::weak_ptr<VertexArray> &vertexArray, const RenderStates& states) const override;
 
+		void draw_object(const Object& object) const override;
+
 		void change_clear_color(const glm::vec4 &color) override;
 
 		void change_clear_color(const glm::ivec4& color) override;

@@ -28,7 +28,9 @@ Wrench is currently only developed by me on macOS and GNU/Linux and only support
 
 Dependencies currently are :
 - OpenGL
-- [GLM](https://glm.g-truc.net/0.9.9/index.html)
+- [GLM](https://glm.g-truc.net/0.9.9/index.html) (bundled with the engine)
 - [SDL2](https://www.libsdl.org/download-2.0.php)
 - [GLEW](http://glew.sourceforge.net/) ([GLAD](https://glad.dav1d.de/) will be an alternative in the future)
+- [yaml-cpp](https://github.com/jbeder/yaml-cpp) (bundled with the engine)
+- [assimp](http://www.assimp.org/)
 - A compiler that supports the C++17 features

@@ -13,6 +13,7 @@
 
 namespace wrench {
 
+	class Object;
 	class RenderStates;
 
 	/**
@@ -52,6 +53,11 @@ namespace wrench {
 		* @brief Draw a vertex array using the given render states
 		*/
 		virtual void draw_object(const std::weak_ptr<VertexArray>& vertexArray, const RenderStates& states) const = 0;
+
+		/**
+		* @brief Draw a wrench::object
+		*/
+		virtual void draw_object(const Object& object) const = 0;
 
 		/**
 		* @brief Gets the window the renderer is bound to

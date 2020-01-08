@@ -1,7 +1,9 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
 project(wrench CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+add_subdirectory(dependencies/yaml-cpp)
 
 #Options
 option(BUILD_DOC "Build the documentation" ON)
@@ -37,6 +39,9 @@ find_package(OpenGL REQUIRED)
 #Find GLEW
 find_package(GLEW REQUIRED)
 
+#Find Assimp
+find_package(Assimp REQUIRED)
+
 #Enable C++17
 set(CMAKE_CXX_STANDARD 17)
 if(MSVC)
@@ -58,11 +63,16 @@ function(add_sdl2_to_libs)
     set(LIBS ${LIBS} ${SDL2_LIBRARY} PARENT_SCOPE)
 endfunction()
 
+#Add SDL2 to the LIBS variable
+function(add_assimp_to_libs)
+    set(LIBS ${LIBS} ${ASSIMP_LIBRARIES} PARENT_SCOPE)
+endfunction()
+
 #Add targets and source files
 #todo: Make a LIB_SOURCES variable working like the current LIBS one
 #todo: Add a target to build a shared library
 #todo: Make a separated module in ./src for every source file
-add_library(wrench src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h src/renderer/common/vertex_buffer.h src/renderer/common/index_buffer.h src/renderer/gl/gl_vertex_buffer.cc src/renderer/gl/gl_vertex_buffer.h src/renderer/gl/gl_index_buffer.cc src/renderer/gl/gl_index_buffer.h src/renderer/common/vertex_array.h src/renderer/gl/gl_vertex_array.cc src/renderer/gl/gl_vertex_array.h src/renderer/common/layout.cc src/renderer/common/layout.h src/renderer/gl/all.h src/renderer/common/renderer.h src/renderer/gl/gl_renderer.cc src/renderer/gl/gl_renderer.h src/renderer/common/camera.cc src/renderer/common/camera.h src/renderer/common/render_states.cc src/renderer/common/render_states.h src/renderer/common/transform.cc src/renderer/common/transform.h src/core/time/clocktime.cc src/core/time/clocktime.h)
+add_library(wrench SHARED src/core/core.h src/window/window.cc src/window/window.h src/core/types.h src/core/core.cc src/renderer/gl/gl_settings.h src/renderer/gl/gl.h src/renderer/common/context.cc src/renderer/common/context.h src/renderer/gl/gl_context.cc src/renderer/gl/gl_context.h src/renderer/common/shader.cc src/renderer/common/shader.h src/renderer/gl/gl_shader.cc src/renderer/gl/gl_shader.h src/renderer/common/vertex_buffer.h src/renderer/common/index_buffer.h src/renderer/gl/gl_vertex_buffer.cc src/renderer/gl/gl_vertex_buffer.h src/renderer/gl/gl_index_buffer.cc src/renderer/gl/gl_index_buffer.h src/renderer/common/vertex_array.h src/renderer/gl/gl_vertex_array.cc src/renderer/gl/gl_vertex_array.h src/renderer/common/layout.cc src/renderer/common/layout.h src/renderer/gl/all.h src/renderer/common/renderer.h src/renderer/gl/gl_renderer.cc src/renderer/gl/gl_renderer.h src/renderer/common/camera.cc src/renderer/common/camera.h src/renderer/common/render_states.cc src/renderer/common/render_states.h src/renderer/common/transform.cc src/renderer/common/transform.h src/core/time/clocktime.cc src/core/time/clocktime.h src/core/error.h src/renderer/common/mesh.cc src/renderer/common/mesh.h src/renderer/common/resource_loader.h src/renderer/common/object.h src/renderer/common/material.cc src/renderer/common/material.h)
 
 if(BUILD_EXAMPLE)
     add_executable(example src/example/main.cpp)
@@ -75,15 +85,16 @@ if(BUILD_EXAMPLE)
 endif()
 
 #Add include directories
-include_directories(dependencies/glm ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR})
+include_directories(dependencies/glm ${GLEW_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIR})
 
 #Add libraries to LIBS
 add_opengl_to_libs()
 add_sdl2_to_libs()
 add_glew_to_libs()
+add_assimp_to_libs()
 
 #Link libraries in LIBS
-target_link_libraries(wrench ${LIBS})
+target_link_libraries(wrench ${LIBS} yaml-cpp)
 
 if(BUILD_EXAMPLE)
     target_link_libraries(example ${LIBS} wrench)
